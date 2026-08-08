@@ -4,23 +4,38 @@ import json
 import os
 from datetime import datetime
 
-# Configurazione
-MASTODON_FEED = "https://norden.social/@jef.rss"
+# Configurazione - Lista di feed da monitorare
+MASTODON_FEEDS = [
+    {
+        "url": "https://norden.social/@jef.rss",
+        "handle": "@jef"
+    },
+    {
+        "url": "https://fosstodon.org/@underdarkGIS.rss",
+        "handle": "@underdarkGIS@fosstodon.org"
+    },
+    {
+        "url": "https://mastodon.uno/@aborruso.rss",
+        "handle": "@aborruso"
+    }
+]
+
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 POSTS_FILE = "seen_posts.json"
 
 def load_seen_posts():
-    """Carica i post già visti da file"""
+    """Carica i post già visti da file (per tutti i feed)"""
     if os.path.exists(POSTS_FILE):
         with open(POSTS_FILE, "r") as f:
             return json.load(f)
-    return []
+    # Inizializza con una lista vuota per ogni feed
+    return {feed["url"]: [] for feed in MASTODON_FEEDS}
 
 def save_seen_posts(posts):
     """Salva i post visti su file"""
     with open(POSTS_FILE, "w") as f:
-        json.dump(posts, f)
+        json.dump(posts, f, indent=2)
 
 def send_telegram_message(message):
     """Invia un messaggio su Telegram"""
@@ -40,53 +55,71 @@ def send_telegram_message(message):
         print(f"❌ Errore invio: {e}")
 
 def check_mastodon():
-    """Controlla feed Mastodon e invia notifiche"""
-    try:
-        print(f"\n🔍 Controllo feed... ({datetime.now().strftime('%H:%M:%S')})")
-        
-        # Fetch del feed
-        feed = feedparser.parse(MASTODON_FEED)
-        
-        if not feed.entries:
-            print("⚠️ Feed vuoto o non raggiungibile")
-            return
-        
-        seen_posts = load_seen_posts()
-        new_posts = []
-        
-        # Controlla i nuovi post (ordine inverso per cronologia)
-        for entry in reversed(feed.entries):
-            post_id = entry.link
-            
-            if post_id not in seen_posts:
-                new_posts.append(post_id)
-                seen_posts.append(post_id)
-                
-                # Manda notifica
-                message = f"📌 Nuovo post da @jef:\n\n{entry.link}"
-                send_telegram_message(message)
-        
-        # Salva i post aggiornati
-        save_seen_posts(seen_posts)
-        
-        if new_posts:
-            print(f"✨ Trovati {len(new_posts)} nuovo/i post!")
-        else:
-            print("✓ Nessun nuovo post")
-            
-    except Exception as e:
-        print(f"❌ Errore: {e}")
-        send_telegram_message(f"⚠️ Errore nel monitoraggio: {str(e)}")
+    """Controlla tutti i feed Mastodon e invia notifiche"""
+    print(f"\n🔍 Controllo feed... ({datetime.now().strftime('%H:%M:%S')})")
+
+    seen_posts = load_seen_posts()
+    total_new_posts = 0
+
+    for feed_config in MASTODON_FEEDS:
+        feed_url = feed_config["url"]
+        handle = feed_config["handle"]
+
+        try:
+            # Fetch del feed
+            feed = feedparser.parse(feed_url)
+
+            if not feed.entries:
+                print(f"⚠️ Feed {handle} vuoto o non raggiungibile")
+                continue
+
+            # Inizializza la lista per questo feed se non esiste
+            if feed_url not in seen_posts:
+                seen_posts[feed_url] = []
+
+            new_posts_for_feed = []
+
+            # Controlla i nuovi post (ordine inverso per cronologia)
+            for entry in reversed(feed.entries):
+                post_id = entry.link
+
+                if post_id not in seen_posts[feed_url]:
+                    new_posts_for_feed.append(post_id)
+                    seen_posts[feed_url].append(post_id)
+                    total_new_posts += 1
+
+                    # Manda notifica
+                    message = f"📌 Nuovo post da {handle}:\n\n{entry.link}"
+                    send_telegram_message(message)
+
+            if new_posts_for_feed:
+                print(f"✨ {handle}: trovati {len(new_posts_for_feed)} nuovo/i post!")
+            else:
+                print(f"✓ {handle}: nessun nuovo post")
+
+        except Exception as e:
+            print(f"❌ Errore per {handle}: {e}")
+            send_telegram_message(f"⚠️ Errore nel monitoraggio di {handle}: {str(e)}")
+
+    # Salva i post aggiornati
+    save_seen_posts(seen_posts)
+
+    if total_new_posts > 0:
+        print(f"\n✨ Totale: {total_new_posts} nuovo/i post!")
+    else:
+        print("\n✓ Nessun nuovo post da nessun feed")
 
 def start_scheduler():
     """Esegue un singolo controllo (per GitHub Actions)"""
     print("🚀 Monitor Mastodon avviato!")
-    print(f"📊 Feed: {MASTODON_FEED}")
+    print(f"📊 Feed monitorati ({len(MASTODON_FEEDS)}):")
+    for feed_config in MASTODON_FEEDS:
+        print(f"   - {feed_config['handle']}: {feed_config['url']}")
     print(f"💬 ID Telegram: {TELEGRAM_CHAT_ID}")
-    
+
     # Un singolo controllo
     check_mastodon()
-    print("✅ Controllo completato!")
+    print("\n✅ Controllo completato!")
 
 if __name__ == "__main__":
     try:
