@@ -1,7 +1,5 @@
 import feedparser
 import requests
-import schedule
-import time
 import json
 import os
 from datetime import datetime
@@ -81,22 +79,14 @@ def check_mastodon():
         send_telegram_message(f"⚠️ Errore nel monitoraggio: {str(e)}")
 
 def start_scheduler():
-    """Avvia lo scheduler"""
+    """Esegue un singolo controllo (per GitHub Actions)"""
     print("🚀 Monitor Mastodon avviato!")
     print(f"📊 Feed: {MASTODON_FEED}")
-    print(f"⏱️ Controllo ogni 30 minuti")
     print(f"💬 ID Telegram: {TELEGRAM_CHAT_ID}")
     
-    # Primo controllo subito
+    # Un singolo controllo
     check_mastodon()
-    
-    # Scheduler ogni 30 minuti
-    schedule.every(30).minutes.do(check_mastodon)
-    
-    # Keep running
-    while True:
-        schedule.run_pending()
-        time.sleep(60)
+    print("✅ Controllo completato!")
 
 if __name__ == "__main__":
     try:
