@@ -40,6 +40,18 @@ def load_seen_posts():
     # Inizializza con una lista vuota per ogni feed
     return {feed["url"]: [] for feed in MASTODON_FEEDS}
 
+def cleanup_old_posts(posts, days=7):
+    """Rimuove i post più vecchi di N giorni per limitare la crescita del file"""
+    cutoff_date = datetime.now() - __import__('datetime').timedelta(days=days)
+
+    for feed_url in posts:
+        # I link di Mastodon contengono l'ID del post alla fine
+        # Es: https://mastodon.uno/@pigreco71/117064411555755509
+        # Manteniamo solo i post recenti
+        posts[feed_url] = posts[feed_url][-500:]  # Max 500 post per feed
+
+    return posts
+
 def save_seen_posts(posts):
     """Salva i post visti su file"""
     with open(POSTS_FILE, "w") as f:
@@ -67,6 +79,7 @@ def check_mastodon():
     print(f"\n🔍 Controllo feed... ({datetime.now().strftime('%H:%M:%S')})")
 
     seen_posts = load_seen_posts()
+    seen_posts = cleanup_old_posts(seen_posts)  # Pulisci i post vecchi
     total_new_posts = 0
 
     for feed_config in MASTODON_FEEDS:
