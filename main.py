@@ -21,6 +21,10 @@ MASTODON_FEEDS = [
     {
         "url": "https://fosstodon.org/tags/qgis.rss",
         "handle": "#qgis"
+    },
+    {
+        "url": "https://mastodon.uno/@pigreco71.rss",
+        "handle": "@pigreco71"
     }
 ]
 
