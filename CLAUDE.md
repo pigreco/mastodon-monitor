@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Mastodon Monitor** is a GitHub Actions-based automation that monitors a Mastodon RSS feed and sends Telegram notifications when new posts are detected. The monitoring runs every 30 minutes via a scheduled workflow.
+**Mastodon Monitor** is a GitHub Actions-based automation that monitors multiple Mastodon RSS feeds and sends Telegram notifications when new posts are detected. The monitoring runs every 30 minutes via a scheduled workflow and automatically persists state via git commits.
 
 ### Key Components
-- **main.py**: Single-file Python application that fetches the Mastodon feed, detects new posts, and sends Telegram messages
-- **.github/workflows/monitor.yml**: GitHub Actions workflow that runs every 30 minutes (configurable schedule)
-- **seen_posts.json**: Persistent state file (auto-generated) tracking which posts have been seen
+- **main.py**: Single-file Python application that monitors multiple Mastodon profiles/hashtags, detects new posts, and sends Telegram messages
+- **.github/workflows/monitor.yml**: GitHub Actions workflow that runs every 30 minutes (configurable schedule) and auto-commits state
+- **seen_posts.json**: Persistent state file tracking which posts have been seen (auto-generated and auto-committed)
 
 ## Development Commands
 
@@ -39,14 +39,18 @@ To test without sending real Telegram messages, temporarily comment out the `sen
 
 ### Single Responsibility
 The application follows a simple linear flow:
-1. **Load State** (`load_seen_posts()`) — Read `seen_posts.json` with IDs of previously seen posts
-2. **Fetch Feed** (`check_mastodon()`) — Parse Mastodon RSS feed via feedparser
-3. **Detect Deltas** — Compare post links against `seen_posts` list
-4. **Notify** — Send new post links to Telegram for each unseen post
-5. **Persist State** (`save_seen_posts()`) — Update `seen_posts.json` with new post IDs
+1. **Load State** (`load_seen_posts()`) — Read `seen_posts.json` with IDs of previously seen posts per feed
+2. **Cleanup** (`cleanup_old_posts()`) — Keep only the last 500 posts per feed to limit file growth
+3. **Fetch Feeds** (`check_mastodon()`) — Parse multiple Mastodon RSS feeds via feedparser
+4. **Detect Deltas** — Compare post links against `seen_posts` list for each feed
+5. **Notify** — Send new post links to Telegram for each unseen post
+6. **Persist State** (`save_seen_posts()`) — Update `seen_posts.json` with new post IDs
 
 ### Configuration
-The feed URL and Telegram credentials are environment-based (see `main.py` lines 8–10). The check interval (30 minutes) is controlled by the cron schedule in `.github/workflows/monitor.yml` line 5.
+- **Multiple Feeds**: Configured in `main.py` lines 8–25 as a list of dictionaries with `url` and `handle`
+- **Telegram Credentials**: Environment-based (`TELEGRAM_TOKEN`, `TELEGRAM_CHAT_ID`)
+- **Check Interval**: Controlled by cron schedule in `.github/workflows/monitor.yml` line 5 (default: every 30 minutes)
+- **State Persistence**: Automatic via GitHub Actions workflow that commits `seen_posts.json` after each run
 
 ## GitHub Actions Automation
 
@@ -55,19 +59,39 @@ The workflow (`.github/workflows/monitor.yml`):
 - **Python**: 3.11 + pip-installed dependencies (feedparser, requests, schedule)
 - **Secrets Used**: `TELEGRAM_TOKEN`, `TELEGRAM_CHAT_ID` (configure in repo Settings → Secrets and variables → Actions)
 
-The job checks out the repo, sets up Python 3.11, installs dependencies, and runs `python main.py` once. GitHub Actions automatically persists the `seen_posts.json` file across runs (via git checkout/commit mechanisms or artifact handling, depending on workflow design—currently this relies on the state file being committed to the repo or managed externally).
+The job:
+1. Checks out the repo
+2. Sets up Python 3.11 and installs dependencies
+3. Runs `python main.py` (monitors all feeds in `MASTODON_FEEDS`)
+4. Automatically commits and pushes updated `seen_posts.json` using `GITHUB_TOKEN`
 
-### Important Note on State Persistence
-Currently, `seen_posts.json` must be committed to the repo for state to persist between workflow runs. If it's not committed, every run will treat all posts as "new." Consider:
-- Committing `seen_posts.json` to version control (simple, but pollutes commit history)
-- Using GitHub Actions artifacts to preserve state
-- Using an external database/API for persistence
+### State Persistence (Resolved)
+✅ **State is now automatically persisted!**
+- After each run, the workflow commits `seen_posts.json` via git
+- Uses `${{ github.token }}` for authentication (no manual token needed)
+- File is kept small (~6-10 KB) via automatic cleanup of posts older than 500 per feed
+- No need to manually manage state; it just works across workflow runs
 
 ## Common Tasks
 
 ### Adding a New Mastodon Feed
-1. Change `MASTODON_FEED` URL in `main.py` line 8
-2. Delete or reset `seen_posts.json` to avoid old posts triggering notifications
+1. Edit `main.py` and add a new entry to the `MASTODON_FEEDS` list:
+   ```python
+   {
+       "url": "https://instance.social/@username.rss",
+       "handle": "@username@instance.social"
+   }
+   ```
+2. For hashtags, use:
+   ```python
+   {
+       "url": "https://instance.social/tags/hashtag.rss",
+       "handle": "#hashtag"
+   }
+   ```
+3. Commit and push (workflow auto-commits state, so new feeds integrate seamlessly)
+
+**Note**: No need to reset `seen_posts.json`—new feeds are auto-initialized with empty lists
 
 ### Adjusting Check Frequency
 Edit the cron schedule in `.github/workflows/monitor.yml` line 5:
@@ -82,6 +106,17 @@ Edit the cron schedule in `.github/workflows/monitor.yml` line 5:
 
 ### Testing a Workflow Run Manually
 In GitHub UI: Actions → Mastodon Monitor → "Run workflow" button (uses `workflow_dispatch` trigger).
+
+## File Management
+
+### seen_posts.json Growth Control
+The `cleanup_old_posts()` function automatically manages file size:
+- Keeps max 500 posts per feed
+- Runs on every check (no separate cleanup needed)
+- Prevents unbounded file growth while maintaining reliable tracking
+- With 5 feeds: ~2,500 posts max (~6-10 KB file size)
+
+This means you can run the monitor indefinitely without worrying about file bloat.
 
 ## Dependencies
 
