@@ -2,7 +2,7 @@ name: Mastodon Monitor
 
 on:
   schedule:
-    - cron: '*/30 * * * *'  # Ogni 30 minuti
+    - cron: '0 */12 * * *'  # Ogni 12 ore
   workflow_dispatch:  # Puoi anche eseguirlo manualmente
 
 jobs:
