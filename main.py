@@ -21,6 +21,10 @@ MASTODON_FEEDS = [
     {
         "url": "https://fosstodon.org/@qgis.rss",
         "handle": "@qgis@fosstodon.org"
+    },
+    {
+        "url": "https://fosstodon.org/tags/qgisuc2026.rss",
+        "handle": "#qgisuc2026"
     }
 ]
 
