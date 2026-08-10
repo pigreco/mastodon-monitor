@@ -47,9 +47,14 @@ The application follows a simple linear flow:
 6. **Persist State** (`save_seen_posts()`) — Update `seen_posts.json` with new post IDs
 
 ### Configuration
-- **Multiple Feeds**: Configured in `main.py` lines 8–25 as a list of dictionaries with `url` and `handle`
+- **Multiple Feeds**: Configured in `main.py` lines 8–30 as a list of dictionaries with `url` and `handle`
+  - @jef@norden.social
+  - @underdarkGIS@fosstodon.org
+  - #qgis (hashtag feed)
+  - @qgis@fosstodon.org (QGIS official account)
+  - #qgisuc2026 (QGIS User Conference 2026)
 - **Telegram Credentials**: Environment-based (`TELEGRAM_TOKEN`, `TELEGRAM_CHAT_ID`)
-- **Check Interval**: Controlled by cron schedule in `.github/workflows/monitor.yml` line 5 (default: every 30 minutes)
+- **Check Interval**: Controlled by cron schedule in `.github/workflows/monitor.yml` line 5 (default: every 12 hours)
 - **State Persistence**: Automatic via GitHub Actions workflow that commits `seen_posts.json` after each run
 
 ## GitHub Actions Automation
@@ -95,7 +100,8 @@ The job:
 
 ### Adjusting Check Frequency
 Edit the cron schedule in `.github/workflows/monitor.yml` line 5:
-- `*/30 * * * *` = every 30 minutes (current)
+- `0 */12 * * *` = every 12 hours (current)
+- `*/30 * * * *` = every 30 minutes
 - `*/15 * * * *` = every 15 minutes
 - `0 * * * *` = hourly
 
