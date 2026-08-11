@@ -29,10 +29,28 @@ jobs:
       - name: Run monitor
         run: python main.py
 
+      - name: Check if seen_posts.json exists and has content
+        run: |
+          if [ -f "seen_posts.json" ] && [ -s "seen_posts.json" ]; then
+            echo "✅ seen_posts.json exists and has content"
+            ls -lh seen_posts.json
+          else
+            echo "❌ ERROR: seen_posts.json is missing or empty!"
+            exit 1
+          fi
+
       - name: Commit seen_posts state
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add seen_posts.json
-          git commit -m "Update seen posts state" || true
-          git push https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git || true
+
+          # Check if there are changes
+          if git diff --quiet seen_posts.json; then
+            echo "ℹ️ No changes to seen_posts.json"
+          else
+            echo "📝 Changes detected, committing..."
+            git add seen_posts.json
+            git commit -m "Update seen posts state"
+            git push https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
+            echo "✅ State persisted successfully"
+          fi
