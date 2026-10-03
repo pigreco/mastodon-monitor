@@ -240,7 +240,11 @@
     "https://norden.social/@cartocalypse/117365771846472866",
     "https://fosstodon.org/@signedav/117367554874531743",
     "https://norden.social/@blub/117370088212194878",
-    "https://mastodon.social/@wheregroup/117370496989513187"
+    "https://mastodon.social/@wheregroup/117370496989513187",
+    "https://fosstodon.org/@qgis/117371452663725036",
+    "https://hachyderm.io/@tomo/117371733862212355",
+    "https://mastodon.social/@geonews/117371899473622052",
+    "https://fosstodon.org/@hansakwast/117372454211682660"
   ],
   "https://fosstodon.org/@qgis.rss": [
     "https://fosstodon.org/@qgis/115723464870647180",
@@ -263,7 +267,8 @@
     "https://fosstodon.org/@qgis/116771987369996078",
     "https://fosstodon.org/@qgis/116772766442460782",
     "https://fosstodon.org/@qgis/116845301146026404",
-    "https://fosstodon.org/@qgis/117359302177450960"
+    "https://fosstodon.org/@qgis/117359302177450960",
+    "https://fosstodon.org/@qgis/117371452663725036"
   ],
   "https://fosstodon.org/tags/qgisuc2026.rss": [
     "https://fosstodon.org/@qgis/116007103863498300",
@@ -273,6 +278,7 @@
     "https://fosstodon.org/@qgis/116595528837196154",
     "https://fosstodon.org/@qgis/116596294484257408",
     "https://fosstodon.org/@qgis/117359302177450960",
-    "https://fosstodon.org/@signedav/117367554874531743"
+    "https://fosstodon.org/@signedav/117367554874531743",
+    "https://fosstodon.org/@qgis/117371452663725036"
   ]
 }
