@@ -247,7 +247,11 @@
     "https://fosstodon.org/@hansakwast/117372454211682660",
     "https://mastodon.social/@wheregroup/117375922782163710",
     "https://mapstodon.space/@spatialists/117377958999327098",
-    "https://fosstodon.org/@oslandia/117378247703099428"
+    "https://fosstodon.org/@oslandia/117378247703099428",
+    "https://mastodon.social/@wheregroup/117380933524915869",
+    "https://fosstodon.org/@qgis/117382053805909660",
+    "https://fosstodon.org/@qgis/117382058821916884",
+    "https://fosstodon.org/@signedav/117382970683512895"
   ],
   "https://fosstodon.org/@qgis.rss": [
     "https://fosstodon.org/@qgis/115723464870647180",
@@ -272,7 +276,10 @@
     "https://fosstodon.org/@qgis/116845301146026404",
     "https://fosstodon.org/@qgis/117359302177450960",
     "https://fosstodon.org/@qgis/117371452663725036",
-    "https://fosstodon.org/@qgis/117375884157907718"
+    "https://fosstodon.org/@qgis/117375884157907718",
+    "https://fosstodon.org/@qgis/117382053805909660",
+    "https://fosstodon.org/@qgis/117382058821916884",
+    "https://fosstodon.org/@qgis/117382211328062896"
   ],
   "https://fosstodon.org/tags/qgisuc2026.rss": [
     "https://fosstodon.org/@qgis/116007103863498300",
@@ -283,6 +290,7 @@
     "https://fosstodon.org/@qgis/116596294484257408",
     "https://fosstodon.org/@qgis/117359302177450960",
     "https://fosstodon.org/@signedav/117367554874531743",
-    "https://fosstodon.org/@qgis/117371452663725036"
+    "https://fosstodon.org/@qgis/117371452663725036",
+    "https://mastodon.social/@RegisHaubourg/117382891750327467"
   ]
 }
