@@ -252,7 +252,9 @@
     "https://fosstodon.org/@qgis/117382053805909660",
     "https://fosstodon.org/@qgis/117382058821916884",
     "https://fosstodon.org/@signedav/117382970683512895",
-    "https://mapstodon.space/@stevefaeembra/117384051575378842"
+    "https://mapstodon.space/@stevefaeembra/117384051575378842",
+    "https://mastodon.social/@RegisHaubourg/117386498971014430",
+    "https://mastodon.social/@ebelo/117387039413264827"
   ],
   "https://fosstodon.org/@qgis.rss": [
     "https://fosstodon.org/@qgis/115723464870647180",
@@ -280,7 +282,13 @@
     "https://fosstodon.org/@qgis/117375884157907718",
     "https://fosstodon.org/@qgis/117382053805909660",
     "https://fosstodon.org/@qgis/117382058821916884",
-    "https://fosstodon.org/@qgis/117382211328062896"
+    "https://fosstodon.org/@qgis/117382211328062896",
+    "https://fosstodon.org/@qgis/117387077237956436",
+    "https://fosstodon.org/@qgis/117387120525848726",
+    "https://fosstodon.org/@qgis/117387122642183626",
+    "https://fosstodon.org/@qgis/117387293825836034",
+    "https://fosstodon.org/@qgis/117387401140465131",
+    "https://fosstodon.org/@qgis/117388038439218177"
   ],
   "https://fosstodon.org/tags/qgisuc2026.rss": [
     "https://fosstodon.org/@qgis/116007103863498300",
@@ -292,6 +300,12 @@
     "https://fosstodon.org/@qgis/117359302177450960",
     "https://fosstodon.org/@signedav/117367554874531743",
     "https://fosstodon.org/@qgis/117371452663725036",
-    "https://mastodon.social/@RegisHaubourg/117382891750327467"
+    "https://mastodon.social/@RegisHaubourg/117382891750327467",
+    "https://mastodon.social/@ebelo/117387039413264827",
+    "https://fosstodon.org/@qgis/117387077237956436",
+    "https://fosstodon.org/@qgis/117387120525848726",
+    "https://mastodon.social/@RegisHaubourg/117387273462579795",
+    "https://fosstodon.org/@qgis/117387401140465131",
+    "https://fosstodon.org/@qgis/117388038439218177"
   ]
 }
