@@ -59,7 +59,9 @@
     "https://fosstodon.org/@underdarkGIS/117355838062078889",
     "https://fosstodon.org/@underdarkGIS/117359931946940066",
     "https://fosstodon.org/@underdarkGIS/117361995346626888",
-    "https://fosstodon.org/@underdarkGIS/117364573823770602"
+    "https://fosstodon.org/@underdarkGIS/117364573823770602",
+    "https://fosstodon.org/@underdarkGIS/117392384824846571",
+    "https://fosstodon.org/@underdarkGIS/117393338952529779"
   ],
   "https://fosstodon.org/tags/qgis.rss": [
     "https://mastodon.social/@geospatialorg/117046849947479187",
@@ -254,7 +256,11 @@
     "https://fosstodon.org/@signedav/117382970683512895",
     "https://mapstodon.space/@stevefaeembra/117384051575378842",
     "https://mastodon.social/@RegisHaubourg/117386498971014430",
-    "https://mastodon.social/@ebelo/117387039413264827"
+    "https://mastodon.social/@ebelo/117387039413264827",
+    "https://mapstodon.space/@adamsteer/117391411776817891",
+    "https://mastodon.social/@vpicavet/117392760741594952",
+    "https://social.servus.at/@geraldo/117392913739379430",
+    "https://fosstodon.org/@underdarkGIS/117393338952529779"
   ],
   "https://fosstodon.org/@qgis.rss": [
     "https://fosstodon.org/@qgis/115723464870647180",
@@ -289,7 +295,13 @@
     "https://fosstodon.org/@qgis/117387293825836034",
     "https://fosstodon.org/@qgis/117387401140465131",
     "https://fosstodon.org/@qgis/117388038439218177",
-    "https://fosstodon.org/@qgis/117389057781314382"
+    "https://fosstodon.org/@qgis/117389057781314382",
+    "https://fosstodon.org/@qgis/117392267104589052",
+    "https://fosstodon.org/@qgis/117392272448476694",
+    "https://fosstodon.org/@qgis/117392749562711892",
+    "https://fosstodon.org/@qgis/117392886063267167",
+    "https://fosstodon.org/@qgis/117392905012806618",
+    "https://fosstodon.org/@qgis/117393281039172247"
   ],
   "https://fosstodon.org/tags/qgisuc2026.rss": [
     "https://fosstodon.org/@qgis/116007103863498300",
@@ -316,6 +328,17 @@
     "https://social.servus.at/@geraldo/117388798029577915",
     "https://fosstodon.org/@qgis/117389057781314382",
     "https://fosstodon.org/@signedav/117389269327697893",
-    "https://fosstodon.org/@signedav/117389290171790212"
+    "https://fosstodon.org/@signedav/117389290171790212",
+    "https://fosstodon.org/@qgis/117392267104589052",
+    "https://fosstodon.org/@qgis/117392272448476694",
+    "https://fosstodon.org/@underdarkGIS/117392384824846571",
+    "https://fosstodon.org/@signedav/117392706816914879",
+    "https://social.servus.at/@geraldo/117392760444420248",
+    "https://fosstodon.org/@qgis/117392886063267167",
+    "https://fosstodon.org/@qgis/117392905012806618",
+    "https://social.servus.at/@geraldo/117392913739379430",
+    "https://fosstodon.org/@qgis/117393281039172247",
+    "https://fosstodon.org/@underdarkGIS/117393338952529779",
+    "https://en.osm.town/@harry_wood/117393387312867972"
   ]
 }
