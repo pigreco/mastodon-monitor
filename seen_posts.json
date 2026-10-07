@@ -61,7 +61,9 @@
     "https://fosstodon.org/@underdarkGIS/117361995346626888",
     "https://fosstodon.org/@underdarkGIS/117364573823770602",
     "https://fosstodon.org/@underdarkGIS/117392384824846571",
-    "https://fosstodon.org/@underdarkGIS/117393338952529779"
+    "https://fosstodon.org/@underdarkGIS/117393338952529779",
+    "https://fosstodon.org/@underdarkGIS/117394034343992317",
+    "https://fosstodon.org/@underdarkGIS/117394293317590003"
   ],
   "https://fosstodon.org/tags/qgis.rss": [
     "https://mastodon.social/@geospatialorg/117046849947479187",
@@ -260,7 +262,10 @@
     "https://mapstodon.space/@adamsteer/117391411776817891",
     "https://mastodon.social/@vpicavet/117392760741594952",
     "https://social.servus.at/@geraldo/117392913739379430",
-    "https://fosstodon.org/@underdarkGIS/117393338952529779"
+    "https://fosstodon.org/@underdarkGIS/117393338952529779",
+    "https://fosstodon.org/@underdarkGIS/117394034343992317",
+    "https://fosstodon.org/@qgis/117395200883788497",
+    "https://fosstodon.org/@rjhale1971/117396217521023195"
   ],
   "https://fosstodon.org/@qgis.rss": [
     "https://fosstodon.org/@qgis/115723464870647180",
@@ -301,7 +306,10 @@
     "https://fosstodon.org/@qgis/117392749562711892",
     "https://fosstodon.org/@qgis/117392886063267167",
     "https://fosstodon.org/@qgis/117392905012806618",
-    "https://fosstodon.org/@qgis/117393281039172247"
+    "https://fosstodon.org/@qgis/117393281039172247",
+    "https://fosstodon.org/@qgis/117394213697572027",
+    "https://fosstodon.org/@qgis/117395200883788497",
+    "https://fosstodon.org/@qgis/117395219005772708"
   ],
   "https://fosstodon.org/tags/qgisuc2026.rss": [
     "https://fosstodon.org/@qgis/116007103863498300",
@@ -339,6 +347,12 @@
     "https://social.servus.at/@geraldo/117392913739379430",
     "https://fosstodon.org/@qgis/117393281039172247",
     "https://fosstodon.org/@underdarkGIS/117393338952529779",
-    "https://en.osm.town/@harry_wood/117393387312867972"
+    "https://en.osm.town/@harry_wood/117393387312867972",
+    "https://fosstodon.org/@underdarkGIS/117394034343992317",
+    "https://fosstodon.org/@qgis/117394213697572027",
+    "https://fosstodon.org/@underdarkGIS/117394293317590003",
+    "https://fosstodon.org/@signedav/117394601176847094",
+    "https://fosstodon.org/@qgis/117395200883788497",
+    "https://fosstodon.org/@qgis/117395219005772708"
   ]
 }
