@@ -63,7 +63,8 @@
     "https://fosstodon.org/@underdarkGIS/117392384824846571",
     "https://fosstodon.org/@underdarkGIS/117393338952529779",
     "https://fosstodon.org/@underdarkGIS/117394034343992317",
-    "https://fosstodon.org/@underdarkGIS/117394293317590003"
+    "https://fosstodon.org/@underdarkGIS/117394293317590003",
+    "https://fosstodon.org/@underdarkGIS/117409921112950404"
   ],
   "https://fosstodon.org/tags/qgis.rss": [
     "https://mastodon.social/@geospatialorg/117046849947479187",
@@ -275,7 +276,10 @@
     "https://mastodon.social/@geonews/117404909791405480",
     "https://mastodon.social/@geonews/117405676793710092",
     "https://mastodon.social/@JossefKanter/117406765185285626",
-    "https://thecanadian.social/@linuxassociation/117407771497373781"
+    "https://thecanadian.social/@linuxassociation/117407771497373781",
+    "https://mastodon.social/@geoObserver/117409332697380378",
+    "https://mastodon.social/@RegisHaubourg/117410379676710882",
+    "https://pouet.chapril.org/@anpi27m/117410709565210037"
   ],
   "https://fosstodon.org/@qgis.rss": [
     "https://fosstodon.org/@qgis/115723464870647180",
@@ -366,6 +370,7 @@
     "https://fosstodon.org/@qgis/117395200883788497",
     "https://fosstodon.org/@qgis/117395219005772708",
     "https://fosstodon.org/@hansakwast/117398353945325307",
-    "https://mapstodon.space/@guilhem_allaman/117400029184255526"
+    "https://mapstodon.space/@guilhem_allaman/117400029184255526",
+    "https://mastodon.social/@RegisHaubourg/117410379676710882"
   ]
 }
